@@ -7,40 +7,101 @@ body {
     margin: 0;
     min-height: 100vh;
     transition: background-color 0.5s ease;
-
 }
 
 .container {
-    margin-top: 50px;
-    padding: 20px;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background to make content visible */
-    border-radius: 15px; /* Optional: adds rounded corners */
+    margin-top: 80px;
+    padding: 30px;
+    background-color: rgba(0, 0, 0, 0.6); /* Darker overlay for contrast */
+    border-radius: 15px;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    font-size: 3rem;
+    font-weight: 600;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4); /* Shadow for better readability */
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.input-group {
+    width: 100%;
+    max-width: 600px;
+    margin: 20px 0;
+    display: flex; /* Horizontal alignment */
+    justify-content: flex-start; /* Align elements to the left */
+}
+
+.input-group input {
+    border-radius: 30px;
+    font-size: 1.2rem;
+    padding: 0.5rem 1rem;
+    border: 2px solid #111010b4; /* Warm coral border */
+    background-color: #ffffff; /* White input field */
+    color: #333; /* Dark text */
+    flex-grow: 1; /* Allow the input field to take most of the space */
+}
+
+.input-group button {
+    border-radius: 30px;
+    font-size: 1.2rem;
+    padding: 0.5rem 2rem;
+    background-color: #1816168c; /* Coral button */
+    border: none;
+    color: white;
+    margin-left: 10px; /* Space between input and button */
+    transition: background-color 0.3s ease;
+}
+
+.input-group button:hover {
+    background-color: #0a090993; /* Darker coral on hover */
 }
 
 .card {
-    background: rgba(255, 255, 255, 0.6); /* Lighter card background */
+    background: rgba(255, 255, 255, 0.6); /* Lighter background for weather card */
     border: none;
     border-radius: 15px;
-    padding: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Slight shadow for emphasis */
+    padding: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Stronger shadow for emphasis */
+    margin-top: 20px;
+}
+
+.card h2 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.card p {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
 }
 
 .forecast-card {
-    background: rgba(255, 255, 255, 0.3); /* Slightly lighter for better contrast */
-    color: #2f2f2f; /* Darker text for better readability */
+    background: rgba(255, 255, 255, 0.3); /* Slightly lighter for contrast */
+    color: #2f2f2f; /* Darker text for readability */
     border-radius: 10px;
-    padding: 15px;
-    width: 120px;
+    padding: 20px;
+    width: 150px; /* Slightly wider cards for readability */
     text-align: center;
-    margin: 10px;
+    margin: 15px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Added shadow for depth */
+    transition: transform 0.3s ease;
+}
+
+.forecast-card:hover {
+    transform: scale(1.05); /* Slight zoom effect on hover */
 }
 
 footer {
-    background-color: #00bcd4; /* Bright cyan for footer */
+    background-color: #00bcd4; /* Bright cyan footer */
     color: white;
-    padding: 5px 10px; /* Reduced size of the footer */
-    font-size: 12px; /* Reduced font size */
+    padding: 20px 10px; /* Increased padding for better spacing */
+    font-size: 14px; /* Larger font size */
     text-align: center;
     position: fixed;
     bottom: 0;
@@ -60,12 +121,31 @@ footer a:hover {
 }
 
 @media (max-width: 768px) {
-    #weatherInfo, #forecastCards {
-        font-size: 14px;
+    .container {
+        margin-top: 60px; /* Reduced margin for smaller screens */
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 2.5rem; /* Slightly smaller header */
+    }
+
+    .card {
+        padding: 20px; /* Reduced padding */
+    }
+
+    .input-group input, .input-group button {
+        font-size: 1rem; /* Smaller font size on mobile */
+        padding: 0.3rem 1rem;
+    }
+
+    .forecast-card {
+        width: 100px; /* Smaller forecast cards on mobile */
+        font-size: 0.9rem; /* Smaller text size for mobile */
     }
 
     footer {
         font-size: 12px;
-        padding: 5px 8px;
+        padding: 10px;
     }
 }

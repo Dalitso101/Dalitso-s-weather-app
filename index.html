@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather App</title>
+    <title>Lufwendo's Weather App</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
@@ -19,75 +19,177 @@
 
         .container {
             margin-top: 50px;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent dark overlay */
+            border-radius: 15px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
         }
 
+        /* Header Section */
+        .header {
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 3.5rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
+            margin-bottom: 10px;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: auto;
+            color: #ddd;
+        }
+
+        /* Search Bar Section */
+        .search-bar {
+            margin: 30px auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .search-bar input {
+            border-radius: 30px;
+            font-size: 1.2rem;
+            padding: 0.6rem 1rem;
+            border: none;
+            width: 60%;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .search-bar button {
+            border-radius: 30px;
+            font-size: 1.2rem;
+            padding: 0.5rem 2rem;
+            background: #007bff;
+            border: none;
+            color: white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .search-bar button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(0, 123, 255, 0.4);
+        }
+
+        /* Weather Info Section */
         .card {
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.1);
             border: none;
             border-radius: 15px;
             padding: 20px;
+            margin-top: 20px;
+            text-align: left;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            color: #fff;
+        }
+
+        .card h2 {
+            font-size: 2.5rem;
+        }
+
+        .forecast-section {
+            margin-top: 40px;
+        }
+
+        .forecast-cards {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
         }
 
         .forecast-card {
             background: rgba(255, 255, 255, 0.1);
             color: white;
             border-radius: 10px;
-            padding: 10px;
+            padding: 15px;
             width: 120px;
             text-align: center;
-            margin: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
         }
 
+        /* Footer */
         footer {
-            background-color: #1e3b7277;
+            background-color: rgba(0, 0, 0, 0.8);
             color: white;
-            padding: 5px 10px;
-            font-size: 12px;
+            padding: 20px;
             text-align: center;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
+            margin-top: 30px;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: #ddd;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
         }
 
         @media (max-width: 768px) {
-            #weatherInfo, #forecastCards {
-                font-size: 14px;
+            .header h1 {
+                font-size: 2.5rem;
             }
 
-            footer {
-                font-size: 10px;
-                padding: 3px 5px;
+            .search-bar input {
+                width: 80%;
+            }
+
+            .forecast-card {
+                width: 100px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container text-center">
-        <h1 class="mb-4 text-light">Weather App</h1>
-        <div class="input-group mb-3">
-            <input type="text" id="cityInput" class="form-control" placeholder="Enter city name">
-            <button id="searchButton" class="btn btn-primary">Search</button>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1> WEATHERLY</h1>
+            <p>Stay updated with the latest weather conditions and plan your week with accurate forecasts.</p>
         </div>
-        <div id="weatherInfo" class="card p-4 d-none">
+
+        <!-- Search Bar -->
+        <div class="search-bar">
+            <input type="text" id="cityInput" class="form-control" placeholder="Enter city name">
+            <button id="searchButton" class="btn">Search</button>
+        </div>
+
+        <!-- Weather Info Section -->
+        <div id="weatherInfo" class="card d-none">
             <h2 id="cityName"></h2>
+            <p id="temperature"></p>
             <p id="description"></p>
-            <h3 id="temperature"></h3>
             <p id="details"></p>
-            <div id="forecast" class="mt-4">
-                <h4>7-Day Forecast</h4>
-                <div id="forecastCards" class="d-flex flex-wrap justify-content-center"></div>
-            </div>
-            <p id="dayNightIndicator" class="mt-4"></p>
+        </div>
+
+        <!-- Forecast Section -->
+        <div class="forecast-section">
+           
+            <div id="forecastCards" class="forecast-cards"></div>
         </div>
     </div>
-    <footer class="text-center">
-        <p>&copy; 2024 Weather App. All Rights Reserved.</p>
-        <div class="d-flex justify-content-center gap-3 mt-2">
-            <a href="http://www.icuzambia.net" target="_blank" class="btn btn-outline-light">Visit ICU Zambia</a>
-            <a href="https://www.zrdc.org" target="_blank" class="btn btn-outline-light">Visit ZRDC</a>
-        </div>
-        <p class="mt-3">Designed and maintained by LUFWENDO SABOI</p>
-        <p>Student ID number: 2401591350</p>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Weather App. Designed by Lufwendo Saboi</p>
+        <p>Student ID: 2401591350</p>
+        <a href="http://www.icuzambia.net" target="_blank">Visit ICU Zambia</a> |
+        <a href="https://www.zrdc.org" target="_blank">Visit ZRDC</a>
     </footer>
 
     <!-- Bootstrap JS -->
